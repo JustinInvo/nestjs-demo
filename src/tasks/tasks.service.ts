@@ -10,8 +10,8 @@ import { UpdateTaskDto } from '../dto/update-task.dto';
 export class TasksService {
   constructor(@InjectModel(Task.name) private taskModel: Model<Task>) {}
 
-  finAll() {
-    this.taskModel.find();
+  findAll() {
+    return this.taskModel.find();
   }
 
   async create(createTask: CreateTaskDto) {
@@ -28,6 +28,6 @@ export class TasksService {
   }
 
   async update(id: string, task: UpdateTaskDto) {
-    return this.taskModel.findByIdAndUpdate(id, task);
+    return this.taskModel.findByIdAndUpdate(id, task, { new: true });
   }
 }
